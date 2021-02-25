@@ -149,7 +149,7 @@ public class Weapon : MonoBehaviour {
 
             case WeaponType.laser:
                 p = MakeProjectile();
-                p.transform.localScale += new Vector3(0, 1000, 0);
+                p.transform.localScale += new Vector3(0, 80, 0);
                 laserFired = true;
                 break;
         }

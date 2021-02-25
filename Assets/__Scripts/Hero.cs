@@ -76,7 +76,7 @@ public class Hero : MonoBehaviour {
 
         if (weapons[0].type == WeaponType.laser) {
             foreach (GameObject laserObj in GameObject.FindGameObjectsWithTag("ProjectileHero")) {
-                laserObj.transform.position = pos;
+                laserObj.transform.position = pos + new Vector3(0, 40, 0);
             }
         }
     }
