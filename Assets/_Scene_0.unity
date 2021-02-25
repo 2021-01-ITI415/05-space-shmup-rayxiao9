@@ -355,14 +355,14 @@ MonoBehaviour:
   - {fileID: 1864666716847092, guid: a69aa768d15cba34b96a5422e50dc9b4, type: 3}
   - {fileID: 1864666716847092, guid: a69aa768d15cba34b96a5422e50dc9b4, type: 3}
   - {fileID: 1864666716847092, guid: a69aa768d15cba34b96a5422e50dc9b4, type: 3}
-  - {fileID: 1864666716847092, guid: a69aa768d15cba34b96a5422e50dc9b4, type: 3}
-  - {fileID: 1864666716847092, guid: a69aa768d15cba34b96a5422e50dc9b4, type: 3}
-  - {fileID: 1864666716847092, guid: a69aa768d15cba34b96a5422e50dc9b4, type: 3}
+  - {fileID: 1801717105832950, guid: cb4206b8e00300649994ecf8ffe838d5, type: 3}
+  - {fileID: 1801717105832950, guid: cb4206b8e00300649994ecf8ffe838d5, type: 3}
+  - {fileID: 1158547974957732, guid: a0a74b7d2e3ac2449b0e77185af83fed, type: 3}
+  - {fileID: 1158547974957732, guid: a0a74b7d2e3ac2449b0e77185af83fed, type: 3}
   - {fileID: 1700942416061258, guid: 3f6055558a488314cb38691d88c41fdf, type: 3}
   - {fileID: 1700942416061258, guid: 3f6055558a488314cb38691d88c41fdf, type: 3}
-  - {fileID: 1700942416061258, guid: 3f6055558a488314cb38691d88c41fdf, type: 3}
-  - {fileID: 1700942416061258, guid: 3f6055558a488314cb38691d88c41fdf, type: 3}
-  enemySpawnPerSecond: 0.5
+  - {fileID: 1539775467464788, guid: 06677ec088bca734db80dc6ecea1d7af, type: 3}
+  enemySpawnPerSecond: 0.6
   enemyDefaultPadding: 1.5
   weaponDefinitions:
   - type: 1
@@ -383,7 +383,7 @@ MonoBehaviour:
     projectileColor: {r: 0, g: 0.654902, b: 1, a: 1}
     damageOnHit: 1
     continuousDamage: 0
-    delayBetweenShots: 0.4
+    delayBetweenShots: 1
     velocity: 50
   - type: 6
     letter: O
@@ -401,12 +401,12 @@ MonoBehaviour:
       type: 3}
     projectileColor: {r: 1, g: 0, b: 0, a: 1}
     damageOnHit: 0
-    continuousDamage: 5
+    continuousDamage: 6
     delayBetweenShots: 0
     velocity: 0
   prefabPowerUp: {fileID: 1062273549804748, guid: 9649a9a79085a854d9990613a980f435,
     type: 3}
-  powerUpFrequency: 05000000050000000200000006000000
+  powerUpFrequency: 01000000010000000100000002000000020000000200000005000000050000000600000006000000
 --- !u!20 &282840813
 Camera:
   m_ObjectHideFlags: 0
