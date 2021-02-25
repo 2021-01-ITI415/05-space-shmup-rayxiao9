@@ -63,9 +63,21 @@ public class Hero : MonoBehaviour {
         // Use the fireDelegate to fire Weapons
         // First, make sure the button is pressed: Axis("Jump")
         // Then ensure that fireDelegate isn't null to avoid an error
-        if (Input.GetAxis("Jump") == 1 && fireDelegate != null)
-        {
+        if (weapons[0].type != WeaponType.laser) {
+            if (Input.GetAxis("Jump") == 1 && fireDelegate != null)
+            {
+                fireDelegate();
+            }
+        }
+
+        else {
             fireDelegate();
+        }
+
+        if (weapons[0].type == WeaponType.laser) {
+            foreach (GameObject laserObj in GameObject.FindGameObjectsWithTag("ProjectileHero")) {
+                laserObj.transform.position = pos;
+            }
         }
     }
 
@@ -120,6 +132,11 @@ public class Hero : MonoBehaviour {
                 else
                 {
                     //If this is a different weapon type
+                    if (weapons[0].type == WeaponType.laser) {
+                        foreach (GameObject laserObj in GameObject.FindGameObjectsWithTag("ProjectileHero")) {
+                            Destroy(laserObj);
+                        }
+                    }
                     ClearWeapons();
                     weapons[0].SetType(pu.type);
                 }
@@ -149,11 +166,13 @@ public class Hero : MonoBehaviour {
 
     Weapon GetEmptyWeaponSlot()
     {
-        for (int i=0; i<weapons.Length; i++)
-        {
-            if (weapons[i].type == WeaponType.none)
+        if (weapons[0].type != WeaponType.laser) {
+            for (int i=0; i<weapons.Length; i++)
             {
-                return (weapons[i]);
+                if (weapons[i].type == WeaponType.none)
+                {
+                    return (weapons[i]);
+                }
             }
         }
         return (null);
