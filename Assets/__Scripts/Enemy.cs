@@ -79,8 +79,10 @@ public class Enemy : MonoBehaviour {
                 // If this Enemy is off screen, don't damage it.
                 if (!bndCheck.isOnScreen)
                 {
+                    if (Main.GetWeaponDefinition(p.type).type != WeaponType.laser) {
                     Destroy(otherGO);
                     break;
+                    }
                 }
 
                 // Hurt this Enemy
@@ -119,8 +121,10 @@ public class Enemy : MonoBehaviour {
                 // If this Enemy is off screen, don't damage it.
                 if (!bndCheck.isOnScreen)
                 {
+                    if (Main.GetWeaponDefinition(p.type).type != WeaponType.laser) {
                     Destroy(otherGO);
                     break;
+                    }
                 }
 
                 // Hurt this Enemy

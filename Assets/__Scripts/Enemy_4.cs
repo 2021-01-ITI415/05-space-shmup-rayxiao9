@@ -163,7 +163,9 @@ public class Enemy_4 : Enemy {
                         if (!Destroyed(s))
                         {
                             // ...then don't damage this part yet
-                            Destroy(other); // Destroy the ProjectileHero
+                            if (Main.GetWeaponDefinition(p.type).type != WeaponType.laser) {
+                                Destroy(other); // Destroy the ProjectileHero
+                            }
                             return; // return before damaging Enemy_4
                         }
                     }
@@ -196,7 +198,9 @@ public class Enemy_4 : Enemy {
                     // Destroy this Enemy
                     Destroy(this.gameObject);
                 }
-                Destroy(other); // Destroy the ProjectileHero
+                if (Main.GetWeaponDefinition(p.type).type != WeaponType.laser) {
+                    Destroy(other); // Destroy the ProjectileHero
+                }
                 break;
         }
     }
