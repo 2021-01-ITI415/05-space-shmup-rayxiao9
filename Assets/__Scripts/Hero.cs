@@ -27,6 +27,8 @@ public class Hero : MonoBehaviour {
     // Create a WeaponFireDelegate field named fireDelegate.
     public WeaponFireDelegate fireDelegate;
 
+    private GameObject laserO = null;
+
 	void Start()
     {
         if (S == null)
@@ -77,8 +79,12 @@ public class Hero : MonoBehaviour {
         if (weapons[0].type == WeaponType.laser) {
             foreach (GameObject laserObj in GameObject.FindGameObjectsWithTag("ProjectileHero")) {
                 if (laserObj.transform.localScale == new Vector3(0.25f, 81f, 0.5f)) {
-                laserObj.transform.position = pos + new Vector3(0, 40, 0);
+                    laserObj.transform.position = pos + new Vector3(0, 40, 0);
                 }
+            }
+            laserO = GameObject.FindWithTag("ProjectileHero");
+            if (laserO == null) {
+                weapons[0].SetType(WeaponType.blaster);
             }
         }
     }
