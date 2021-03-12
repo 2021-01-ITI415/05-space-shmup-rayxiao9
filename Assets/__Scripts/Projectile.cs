@@ -33,7 +33,7 @@ public class Projectile : MonoBehaviour {
 
     private void Update()
     {
-        if (bndCheck.offUp)
+        if (bndCheck.offUp && type != WeaponType.laser)
         {
             Destroy(gameObject);
         }

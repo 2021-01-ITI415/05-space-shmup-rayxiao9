@@ -79,14 +79,17 @@ public class Enemy : MonoBehaviour {
                 // If this Enemy is off screen, don't damage it.
                 if (!bndCheck.isOnScreen)
                 {
+                    if (Main.GetWeaponDefinition(p.type).type != WeaponType.laser) {
                     Destroy(otherGO);
                     break;
+                    }
                 }
 
                 // Hurt this Enemy
                 ShowDamage();
                 // Get the damage amount from the Main WEAP_DICT
                 health -= Main.GetWeaponDefinition(p.type).damageOnHit;
+                
                 if(health <= 0)
                 {
                     // Tell the Main singleton that this ship was destroyed
@@ -98,7 +101,51 @@ public class Enemy : MonoBehaviour {
                     // Destroy this enemy
                     Destroy(this.gameObject);
                 }
-                Destroy(otherGO);
+                if (Main.GetWeaponDefinition(p.type).type != WeaponType.laser) {
+                    Destroy(otherGO);
+                }
+                break;
+
+            default:
+                print("Enemy hit by non-ProjectileHero: " + otherGO.name);
+                break;
+        }
+    }
+
+    private void OnCollisionStay(Collision coll) {
+        GameObject otherGO = coll.gameObject;
+        switch (otherGO.tag)
+        {
+            case "ProjectileHero":
+                Projectile p = otherGO.GetComponent<Projectile>();
+                // If this Enemy is off screen, don't damage it.
+                if (!bndCheck.isOnScreen)
+                {
+                    if (Main.GetWeaponDefinition(p.type).type != WeaponType.laser) {
+                    Destroy(otherGO);
+                    break;
+                    }
+                }
+
+                // Hurt this Enemy
+                ShowDamage();
+                // Get the damage amount from the Main WEAP_DICT
+                health -= Main.GetWeaponDefinition(p.type).continuousDamage * Time.deltaTime;
+                
+                if(health <= 0)
+                {
+                    // Tell the Main singleton that this ship was destroyed
+                    if (!notifiedOfDestruction)
+                    {
+                        Main.S.ShipDestroyed(this);
+                    }
+                    notifiedOfDestruction = true;
+                    // Destroy this enemy
+                    Destroy(this.gameObject);
+                }
+                if (Main.GetWeaponDefinition(p.type).type != WeaponType.laser) {
+                    Destroy(otherGO);
+                }
                 break;
 
             default:

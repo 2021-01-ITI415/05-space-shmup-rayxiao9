@@ -46,9 +46,14 @@ public class Weapon : MonoBehaviour {
     public GameObject collar;
     public float lastShotTime; // Time last shot was fired
     private Renderer collarRend;
+    private bool laserFired = false;
 
     private void Start()
     {
+        /*GameObject Hero = GameObject.Find("_Hero");
+        Hero heroScript = Hero.GetComponent<Hero>();
+        speed = heroScript.speed;*/
+
         collar = transform.Find("Collar").gameObject;
         collarRend = collar.GetComponent<Renderer>();
 
@@ -105,9 +110,16 @@ public class Weapon : MonoBehaviour {
         // If this.gameObject is inactive, return
         if (!gameObject.activeInHierarchy) return;
         // If it hasn't been enough time between shots, return
-        if (Time.time - lastShotTime < def.delayBetweenShots)
-        {
-            return;
+        if (type != WeaponType.laser) {
+            if (Time.time - lastShotTime < def.delayBetweenShots)
+            {
+                return;
+            }
+        }
+        else {
+            if (laserFired) {
+                return;
+            }
         }
         Projectile p;
         Vector3 vel = Vector3.up * def.velocity;
@@ -120,6 +132,7 @@ public class Weapon : MonoBehaviour {
             case WeaponType.blaster:
                 p = MakeProjectile();
                 p.rigid.velocity = vel;
+                laserFired = false;
                 break;
 
             case WeaponType.spread:
@@ -131,6 +144,19 @@ public class Weapon : MonoBehaviour {
                 p = MakeProjectile(); // Make left Projectile
                 p.transform.rotation = Quaternion.AngleAxis(-10, Vector3.back);
                 p.rigid.velocity = p.transform.rotation * vel;
+                p = MakeProjectile();
+                p.transform.rotation = Quaternion.AngleAxis(5, Vector3.back);
+                p.rigid.velocity = p.transform.rotation * vel;
+                p = MakeProjectile();
+                p.transform.rotation = Quaternion.AngleAxis(-5, Vector3.back);
+                p.rigid.velocity = p.transform.rotation * vel;
+                laserFired = false;
+                break;
+
+            case WeaponType.laser:
+                p = MakeProjectile();
+                p.transform.localScale += new Vector3(0, 80, 0);
+                laserFired = true;
                 break;
         }
     }
